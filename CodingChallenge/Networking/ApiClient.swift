@@ -13,7 +13,7 @@ protocol ApiClientType {
 }
 
 class ApiClient: ApiClientType, ObservableObject {
-    @Published var shifts: [Shift] = []
+    @Published var shifts: [Datum] = []
 
     // MARK: - Main Mehtods
     func fetchShifts() {
@@ -31,8 +31,8 @@ class ApiClient: ApiClientType, ObservableObject {
             print(String(data: data, encoding: .utf8), response, error)
             DispatchQueue.main.async {
                 do {
-                    let decodedShifts = try JSONDecoder().decode([Shift].self, from: data)
-                    self.shifts = decodedShifts
+                    let decodedShifts = try JSONDecoder().decode(Result.self, from: data)
+                    self.shifts = decodedShifts.data
                 } catch let error {
                     print("Error decoding: ", error)
                 }
@@ -58,7 +58,7 @@ class ApiClient: ApiClientType, ObservableObject {
         URLQueryItem(name: "end", value: endDate),
         URLQueryItem(name: "type", value: type)
         ]
-        
+        print("### URL \(components?.url)")
         return components?.url
     }
     
