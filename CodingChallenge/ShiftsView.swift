@@ -8,17 +8,26 @@
 import SwiftUI
 
 struct ShiftsView: View {
+    // MARK: - Variables
+    @EnvironmentObject var apiClient: ApiClient
+
     // MARK: - Body
     var body: some View {
         NavigationView {
-            Group {
-                Text("The main view should include a list of shifts. If you tap on a shift it should show a modal shift details view. Be creative and show us your best work.")
-                    .multilineTextAlignment(.center)
-                    .padding()
+            ScrollView {
+//                List {
+                    VStack {
+                        ForEach(apiClient.shifts, id: \.id) { shift in
+                            VStack {
+                                Text(shift.date)
+                            }
+                        }
+                    }
+//                }
             }
             .navigationTitle("Shifts")
             .onAppear {
-                ApiClient().fetchShifts()
+                apiClient.fetchShifts()
             }
         }
     }
@@ -28,5 +37,6 @@ struct ShiftsView: View {
 struct ShiftsView_Previews: PreviewProvider {
     static var previews: some View {
         ShiftsView()
+            .environmentObject(ApiClient())
     }
 }

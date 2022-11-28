@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct CodingChallengeApp: App {
+    var apiClient = ApiClient()
+
     var body: some Scene {
         WindowGroup {
             ShiftsView()
+                .environmentObject(apiClient)
         }
     }
 }

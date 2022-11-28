@@ -10,12 +10,14 @@ import Foundation
 extension Date {
     func shiftDateFormat() -> String {
         let dateFormater = DateFormatter()
+        dateFormater.timeZone = .current
         dateFormater.dateFormat = "yyyy-MM-dd"
         return dateFormater.string(from: self)
     }
 
-    func oneWeekAfter() -> Date? {
+    func oneWeekAfter() -> String? {
         let calendar = Calendar.current
-        return calendar.date(byAdding: .weekOfMonth, value: 1, to: self)
+        print("$$$$$ ", calendar.date(byAdding: .weekOfMonth, value: 1, to: self)?.shiftDateFormat())
+        return calendar.date(byAdding: .weekOfMonth, value: 1, to: self)?.shiftDateFormat()
     }
 }

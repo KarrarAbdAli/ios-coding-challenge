@@ -17,7 +17,9 @@ struct Result: Codable {
 }
 
 // MARK: - Datum
-struct Datum: Codable {
+struct Datum: Identifiable, Codable {
+    var id: String? = UUID().uuidString
+    
     let date: String
     var shifts: [Shift]?
 }
