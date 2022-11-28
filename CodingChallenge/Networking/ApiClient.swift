@@ -9,14 +9,14 @@ import Foundation
 import SwiftUI
 
 protocol ApiClientType {
-    func fetchShifts()
+    func fetchShifts(completion: @escaping (Swift.Result<[Datum], Error>) -> Void)
 }
 
 class ApiClient: ApiClientType, ObservableObject {
-    @Published var shifts: [Datum] = []
 
     // MARK: - Main Mehtods
-    func fetchShifts() {
+
+    func fetchShifts(completion: @escaping (Swift.Result<[Datum], Error>) -> Void) {
         guard let shiftsBaseURL = URL.shiftsBaseURL,
               let url = getUrl(url: shiftsBaseURL) else { return }
         var urlRequest = URLRequest(url: url)
@@ -24,9 +24,10 @@ class ApiClient: ApiClientType, ObservableObject {
         urlRequest.addValue("application/json", forHTTPHeaderField: "Accept")
         urlRequest.httpMethod = "GET"
 
+
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
-                print("Request error: ", error)
+                completion(.failure(error))
                 return
             }
             
@@ -35,9 +36,10 @@ class ApiClient: ApiClientType, ObservableObject {
             DispatchQueue.main.async {
                 do {
                     let decodedShifts = try JSONDecoder().decode(Result.self, from: data)
-                    self.shifts = decodedShifts.data
+                    completion(.success(decodedShifts.data))
                 } catch let error {
                     print("Error decoding: ", error)
+                    completion(.failure(error))
                 }
             }
             
@@ -47,6 +49,7 @@ class ApiClient: ApiClientType, ObservableObject {
     }
 
     // MARK: - Private Methods
+    
     private func getUrl(url: URL) -> URL? {
         let date = Date()
         let startDate = date.shiftDateFormat()
@@ -65,5 +68,4 @@ class ApiClient: ApiClientType, ObservableObject {
         print("### URL \(components?.url)")
         return components?.url
     }
-    
 }

@@ -17,6 +17,7 @@
 		C797A5552934F0EF002FF0B7 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797A5542934F0EF002FF0B7 /* ApiClient.swift */; };
 		C797A55B2934F3AC002FF0B7 /* URL+ShiftsBaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797A55A2934F3AC002FF0B7 /* URL+ShiftsBaseUrl.swift */; };
 		C797A55D2934FC76002FF0B7 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797A55C2934FC76002FF0B7 /* Date+Helpers.swift */; };
+		C797A55F29354665002FF0B7 /* ShiftsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797A55E29354665002FF0B7 /* ShiftsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		C797A5542934F0EF002FF0B7 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		C797A55A2934F3AC002FF0B7 /* URL+ShiftsBaseUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+ShiftsBaseUrl.swift"; sourceTree = "<group>"; };
 		C797A55C2934FC76002FF0B7 /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
+		C797A55E29354665002FF0B7 /* ShiftsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				C797A5592934F34B002FF0B7 /* Extensions */,
 				2349FD5A261E4F6900A1FEAA /* CodingChallengeApp.swift */,
+				C797A55E29354665002FF0B7 /* ShiftsViewModel.swift */,
 				2349FD88261E4F9900A1FEAA /* ShiftsView.swift */,
 				C797A5512934F060002FF0B7 /* Networking */,
 				C797A54E2934E626002FF0B7 /* Model */,
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2349FD89261E4F9900A1FEAA /* ShiftsView.swift in Sources */,
+				C797A55F29354665002FF0B7 /* ShiftsViewModel.swift in Sources */,
 				C797A55D2934FC76002FF0B7 /* Date+Helpers.swift in Sources */,
 				C797A5502934E691002FF0B7 /* Shift.swift in Sources */,
 				2349FD5B261E4F6900A1FEAA /* CodingChallengeApp.swift in Sources */,

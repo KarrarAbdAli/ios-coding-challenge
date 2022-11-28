@@ -9,25 +9,19 @@ import SwiftUI
 
 struct ShiftsView: View {
     // MARK: - Variables
-    @EnvironmentObject var apiClient: ApiClient
+    @StateObject private var viewModel = ViewModel()
 
     // MARK: - Body
     var body: some View {
         NavigationView {
-            ScrollView {
-//                List {
-                    VStack {
-                        ForEach(apiClient.shifts, id: \.id) { shift in
-                            VStack {
-                                Text(shift.date)
-                            }
-                        }
-                    }
-//                }
+            List {
+                ForEach(viewModel.shifts, id: \.date) { shift in
+                    Text(shift.date)
+                }
             }
             .navigationTitle("Shifts")
             .onAppear {
-                apiClient.fetchShifts()
+                viewModel.loadShifts()
             }
         }
     }
@@ -37,6 +31,5 @@ struct ShiftsView: View {
 struct ShiftsView_Previews: PreviewProvider {
     static var previews: some View {
         ShiftsView()
-            .environmentObject(ApiClient())
     }
 }
