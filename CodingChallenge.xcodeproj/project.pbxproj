@@ -14,6 +14,9 @@
 		2349FD78261E4F6A00A1FEAA /* CodingChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2349FD77261E4F6A00A1FEAA /* CodingChallengeUITests.swift */; };
 		2349FD89261E4F9900A1FEAA /* ShiftsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2349FD88261E4F9900A1FEAA /* ShiftsView.swift */; };
 		C797A5502934E691002FF0B7 /* Shift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797A54F2934E691002FF0B7 /* Shift.swift */; };
+		C797A5552934F0EF002FF0B7 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797A5542934F0EF002FF0B7 /* ApiClient.swift */; };
+		C797A55B2934F3AC002FF0B7 /* URL+ShiftsBaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797A55A2934F3AC002FF0B7 /* URL+ShiftsBaseUrl.swift */; };
+		C797A55D2934FC76002FF0B7 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C797A55C2934FC76002FF0B7 /* Date+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		2349FD79261E4F6A00A1FEAA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2349FD88261E4F9900A1FEAA /* ShiftsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShiftsView.swift; sourceTree = "<group>"; };
 		C797A54F2934E691002FF0B7 /* Shift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
+		C797A5542934F0EF002FF0B7 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		C797A55A2934F3AC002FF0B7 /* URL+ShiftsBaseUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+ShiftsBaseUrl.swift"; sourceTree = "<group>"; };
+		C797A55C2934FC76002FF0B7 /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +103,10 @@
 		2349FD59261E4F6900A1FEAA /* CodingChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				C797A5592934F34B002FF0B7 /* Extensions */,
 				2349FD5A261E4F6900A1FEAA /* CodingChallengeApp.swift */,
 				2349FD88261E4F9900A1FEAA /* ShiftsView.swift */,
+				C797A5512934F060002FF0B7 /* Networking */,
 				C797A54E2934E626002FF0B7 /* Model */,
 				2349FD5E261E4F6A00A1FEAA /* Assets.xcassets */,
 				2349FD63261E4F6A00A1FEAA /* Info.plist */,
@@ -139,6 +147,23 @@
 				C797A54F2934E691002FF0B7 /* Shift.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C797A5512934F060002FF0B7 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				C797A5542934F0EF002FF0B7 /* ApiClient.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		C797A5592934F34B002FF0B7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C797A55A2934F3AC002FF0B7 /* URL+ShiftsBaseUrl.swift */,
+				C797A55C2934FC76002FF0B7 /* Date+Helpers.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,8 +296,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2349FD89261E4F9900A1FEAA /* ShiftsView.swift in Sources */,
+				C797A55D2934FC76002FF0B7 /* Date+Helpers.swift in Sources */,
 				C797A5502934E691002FF0B7 /* Shift.swift in Sources */,
 				2349FD5B261E4F6900A1FEAA /* CodingChallengeApp.swift in Sources */,
+				C797A55B2934F3AC002FF0B7 /* URL+ShiftsBaseUrl.swift in Sources */,
+				C797A5552934F0EF002FF0B7 /* ApiClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

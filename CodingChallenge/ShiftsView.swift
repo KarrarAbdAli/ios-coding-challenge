@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ShiftsView: View {
+    // MARK: - Body
     var body: some View {
         NavigationView {
             Group {
@@ -16,10 +17,14 @@ struct ShiftsView: View {
                     .padding()
             }
             .navigationTitle("Shifts")
+            .onAppear {
+                ApiClient().fetchShifts()
+            }
         }
     }
 }
 
+// MARK: - Preview
 struct ShiftsView_Previews: PreviewProvider {
     static var previews: some View {
         ShiftsView()
