@@ -13,6 +13,8 @@ protocol ApiClientType {
 }
 
 class ApiClient: ApiClientType, ObservableObject {
+    private var startDate: Date?
+    private var endDate: Date?
 
     // MARK: - Main Mehtods
 
@@ -32,40 +34,50 @@ class ApiClient: ApiClientType, ObservableObject {
             }
             
             guard let data = data else { return }
-            print(String(data: data, encoding: .utf8), response, error)
             DispatchQueue.main.async {
                 do {
                     let decodedShifts = try JSONDecoder().decode(Result.self, from: data)
-                    completion(.success(decodedShifts.data))
+                    let shifts = decodedShifts.data.filter {
+                        guard let shifts = $0.shifts else {
+                            return false
+                        }
+                        return !shifts.isEmpty
+                    }
+                    completion(.success(shifts))
                 } catch let error {
                     print("Error decoding: ", error)
                     completion(.failure(error))
                 }
             }
-            
         }
-        
         dataTask.resume()
     }
 
     // MARK: - Private Methods
     
     private func getUrl(url: URL) -> URL? {
-        let date = Date()
-        let startDate = date.shiftDateFormat()
-        print("$$$$ START DATE \(startDate)")
-        let endDate = date.oneWeekAfter() ?? ""
+        var startDateString = ""
+        var endDateString = ""
+        if startDate == nil, endDate == nil {
+            let date = Date()
+            startDate = date
+            endDate = date.oneWeekAfter()
+        } else {
+            startDate = endDate
+            endDate = endDate?.oneWeekAfter()
+        }
+        startDateString = startDate?.shiftDateFormat() ?? ""
+        endDateString = endDate?.shiftDateFormat() ?? ""
         let type = "week"
         let address = "Dallas, TX".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
 
         var components = URLComponents(string: url.absoluteString)
         components?.queryItems = [
             URLQueryItem(name: "type", value: type),
-            URLQueryItem(name: "start", value: startDate),
-            URLQueryItem(name: "end", value: endDate),
+            URLQueryItem(name: "start", value: startDateString),
+            URLQueryItem(name: "end", value: endDateString),
             URLQueryItem(name: "address", value: address)
         ]
-        print("### URL \(components?.url)")
         return components?.url
     }
 }

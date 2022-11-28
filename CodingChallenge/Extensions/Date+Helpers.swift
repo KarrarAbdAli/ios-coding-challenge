@@ -15,9 +15,12 @@ extension Date {
         return dateFormater.string(from: self)
     }
 
-    func oneWeekAfter() -> String? {
+    func oneWeekAfter() -> Date? {
+        addWeeks(_weekNumbers: 1)
+    }
+
+    func addWeeks(_weekNumbers weeks: Int) -> Date? {
         let calendar = Calendar.current
-        print("$$$$$ ", calendar.date(byAdding: .weekOfMonth, value: 1, to: self)?.shiftDateFormat())
-        return calendar.date(byAdding: .weekOfMonth, value: 1, to: self)?.shiftDateFormat()
+        return calendar.date(byAdding: .weekOfMonth, value: weeks, to: self)
     }
 }

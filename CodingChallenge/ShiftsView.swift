@@ -14,16 +14,46 @@ struct ShiftsView: View {
     // MARK: - Body
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.shifts, id: \.date) { shift in
-                    Text(shift.date)
+            
+            ScrollView(showsIndicators: false) {
+                LazyVStack {
+                    ForEach(viewModel.shifts, id: \.date) { shift in
+                        cellView(date: shift.date)
+                            .onAppear {
+                                viewModel.loadShifts()
+                            }
+                    }
+                    if viewModel.isLoading {
+                        ProgressView()
+                            .padding(.vertical)
+                    }
                 }
+                
             }
+            .padding()
             .navigationTitle("Shifts")
             .onAppear {
                 viewModel.loadShifts()
             }
+           
         }
+    }
+
+    // MARK: - SubViews
+    private func cellView(date: String) -> some View {
+        Rectangle()
+            .frame(height: 60)
+            .foregroundColor(.white)
+            .border(.black, width: 3)
+            .overlay(
+                HStack {
+                    Image(systemName: "calendar")
+                        .frame(width: 60, height: 60)
+                    Text(date)
+                        .font(.title)
+                    Spacer()
+                }
+            )
     }
 }
 
