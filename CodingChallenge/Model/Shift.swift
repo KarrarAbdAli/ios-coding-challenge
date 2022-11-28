@@ -8,6 +8,7 @@
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 
 import Foundation
+import SwiftUI
 
 // MARK: - Result
 struct Result: Codable {
@@ -55,7 +56,7 @@ struct Shift: Codable {
 struct FacilityType: Codable {
     let id: Int
     let name: FacilityTypeName
-    let color: Color
+    let color: FacilityColor
     let abbreviation: FacilityTypeAbbreviation?
 }
 
@@ -71,7 +72,7 @@ enum FacilityTypeAbbreviation: String, Codable {
     case rt = "RT"
 }
 
-enum Color: String, Codable {
+enum FacilityColor: String, Codable {
     case af52De = "#AF52DE"
     case bf0034 = "#BF0034"
     case db8Bff = "#DB8BFF"
@@ -160,6 +161,17 @@ enum ShiftKind: String, Codable {
     case dayShift = "Day Shift"
     case eveningShift = "Evening Shift"
     case nightShift = "Night Shift"
+
+    func shiftColor() -> Color {
+        switch self {
+        case .dayShift:
+            return .dayShift
+        case .eveningShift:
+            return .eveningShift
+        case .nightShift:
+            return .nightShift
+        }
+    }
 }
 
 enum Timezone: String, Codable {

@@ -10,15 +10,25 @@ import SwiftUI
 struct ShiftsView: View {
     // MARK: - Variables
     @StateObject private var viewModel = ViewModel()
+    
 
     // MARK: - Body
     var body: some View {
         NavigationView {
-            
+           
             ScrollView(showsIndicators: false) {
+                if let selectedShift = viewModel.selectedShift {
+                    NavigationLink(destination: ShiftsDetails(shifts: selectedShift),
+                                   isActive: $viewModel.showDetials,
+                                   label: { EmptyView() })
+                }
                 LazyVStack {
                     ForEach(viewModel.shifts, id: \.date) { shift in
                         cellView(date: shift.date)
+                            .onTapGesture {
+                                viewModel.selectedShift = shift.shifts
+                                viewModel.showDetials = true
+                            }
                             .onAppear {
                                 viewModel.loadShifts()
                             }

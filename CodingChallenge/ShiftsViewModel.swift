@@ -14,6 +14,9 @@ extension ShiftsView {
         // MARK: - Properties
         @Published private(set) var shifts: [Datum] = []
         @Published private(set) var isLoading = false
+        @Published var showDetials = false
+        @Published var selectedShift: [Shift]? = []
+
         // MARK: - Dependencies
         private let apiClient: ApiClientType
 
